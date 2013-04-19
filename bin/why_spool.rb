@@ -21,7 +21,7 @@ end
 @bin_path = File.dirname($PROGRAM_NAME)
 @root_path = File.expand_path("..", @bin_path)
 @index_path = @root_path + File::Separator + "index.html"
-@spool_pattern = Regexp.new("SPOOL/\s*")
+@spool_pattern = Regexp.new("SPOOL/[A-Z]+")
 Dir.chdir(@root_path)
 
 # parse the current index
@@ -49,5 +49,6 @@ while 1 do
             system("lp -o raw " << file_name)
         end
     end
+    old_index = new_index
     sleep 60
 end
